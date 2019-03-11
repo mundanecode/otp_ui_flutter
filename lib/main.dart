@@ -31,8 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _handleKeypadClick(String val) {
     setState(() {
-
-
       if (_otp.length < 4){
       _otp = _otp + val;
       for (int i=0; i < _otp.length; i++)
@@ -52,9 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _handleSubmit() {
+    if (_otp.length == 4)
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text('Entered OTP is: $_otp'),
+      content: Text('Entered OTP is $_otp'),
     ));
+    else
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text('OTP has to be of 4 digits'),
+          backgroundColor: Colors.red,
+      ));
   }
 
   @override
@@ -73,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                   margin: const EdgeInsets.only(top: 30),
                   child: Text(
-                    'Please enter your OTP',
+                    'Enter the OTP received',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                   )),
               Row(
